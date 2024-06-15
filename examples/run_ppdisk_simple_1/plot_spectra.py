@@ -19,7 +19,7 @@ from radmc3dPy.natconst import *
 #
 # Make and plot the SED as seen at 1 pc distance
 #
-os.system("radmc3d sed incl 60 phi 30")
+os.system("radmc3d sed incl 90")
 fig3  = plt.figure()
 s     = readSpectrum()
 lam   = s[:,0]

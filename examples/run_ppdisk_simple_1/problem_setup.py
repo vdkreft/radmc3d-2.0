@@ -5,7 +5,7 @@ import numpy as np
 #
 # Some natural constants
 #
-au  = 1.49598e13     # Astronomical Unit       [cm]
+au  = 1.49598e13    # Astronomical Unit       [cm]
 pc  = 3.08572e18     # Parsec                  [cm]
 ms  = 1.98892e33     # Solar mass              [g]
 ts  = 5.78e3         # Solar temperature       [K]
@@ -27,11 +27,11 @@ thetaup  = np.pi*0.5 - 0.7e0
 #
 # Disk parameters
 #
-sigmag0  = 1e1               # Sigma gas at 1 AU
+sigmag0  = 1e1               # Sigma gas at 1 AU (g/cm^2)
 sigmad0  = sigmag0 * 0.01    # Sigma dust at 1 AU
-plsig    = -1.0e0            # Powerlaw of the surface density
-hr0      = 0.05              # H_p/r at 1 AU
-plh      = 0.1               # Powerlaw of flaring
+plsig    = -1e0            # Powerlaw of the surface density (always negative)
+hr0      = 0.05              # H_p/r at 1 AU (width of guassian)
+plh      = 0.1               # Powerlaw of flaring (how curved flaring is)
 #
 # Star parameters
 #
@@ -124,13 +124,14 @@ with open('dust_density.inp','w+') as f:
 #
 # Dust opacity control file
 #
+user_input_dust_species = input("Enter the name of the dust species: ")
 with open('dustopac.inp','w+') as f:
     f.write('2               Format number of this file\n')
     f.write('1               Nr of dust species\n')
     f.write('============================================================================\n')
     f.write('1               Way in which this dust species is read\n')
     f.write('0               0=Thermal grain\n')
-    f.write('silicate        Extension of name of dustkappa_***.inp file\n')
+    f.write(user_input_dust_species.ljust(16) +'        Extension of name of dustkappa_***.inp file\n')
     f.write('----------------------------------------------------------------------------\n')
 #
 # Write the radmc3d.inp control file
